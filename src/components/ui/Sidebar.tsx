@@ -42,10 +42,10 @@ export default function Sidebar({ open = true }: SidebarProps) {
 
   const menuItems = [
     { name: "Analytics", icon: <BarChart />, path: "/analytics" },
-    { name: "Customer", icon: <Person />, path: "/customer" },
-    { name: "Vendor", icon: <Business />, path: "/vendor" },
-    { name: "Subscriber", icon: <People />, path: "/subscriber" },
-    { name: "Plan", icon: <Assignment />, path: "/plan" },
+    { name: "Customer List", icon: <Person />, path: "/customer-list" },
+    { name: "Vendor List", icon: <Business />, path: "/vendor-list" },
+    { name: "Subscriber List", icon: <People />, path: "/subscriber-list" },
+    { name: "Plan Management", icon: <Assignment />, path: "/plan-management" },
   ];
 
   const settingsItems = [

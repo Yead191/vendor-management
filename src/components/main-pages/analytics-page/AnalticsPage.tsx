@@ -257,7 +257,7 @@ const ChartContainer = ({
 
 export default function AnalyticsPage() {
   return (
-    <div className="">
+    <div className="overflow-hidden">
       {/* KPI Cards */}
       <div className="flex space-between gap-3 w-full">
         <div className="w-full">
