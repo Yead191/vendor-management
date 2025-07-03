@@ -386,19 +386,32 @@ export default function SubscriberList() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Box sx={{ width: "100%" }}>
-        <Paper sx={{ width: "100%", mb: 2, p: "16px 24px" }}>
+      <Box sx={{ p: "16px 24px", backgroundColor: "background.paper" }}>
+        <Box>
           {/* Toolbar */}
-          <Toolbar sx={{ pl: { sm: 2 }, pr: { xs: 1, sm: 1 } }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 2,
+              mb: 3,
+              alignItems: "center",
+            }}
+          >
             <Box
-              sx={{ display: "flex", alignItems: "center", gap: 2, flex: 1 }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 2,
+              }}
             >
               {/* Search */}
               <TextField
-                size="small"
-                placeholder="Search customers..."
+                placeholder="Search vendors..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
+                sx={{ minWidth: 300 }}
+                size="small"
                 InputProps={{
                   startAdornment: (
                     <SearchIcon
@@ -415,10 +428,6 @@ export default function SubscriberList() {
                   sx: {
                     // borderRadius: "15px",
                   },
-                }}
-                sx={{
-                  minWidth: 250,
-                  // borderRadius: "50px",
                 }}
               />
 
@@ -476,7 +485,7 @@ export default function SubscriberList() {
               )}
               <Button
                 variant="contained"
-                size="small"
+                size="medium"
                 startIcon={<PersonAddIcon />}
                 onClick={handleAddCustomer}
                 sx={{
@@ -485,20 +494,13 @@ export default function SubscriberList() {
               >
                 Add Customer
               </Button>
-              {/* <Button
-                variant="outlined"
-                size="small"
-                startIcon={<DownloadIcon />}
-              >
-                Export
-              </Button> */}
             </Box>
-          </Toolbar>
+          </Box>
 
           {/* Table */}
           <TableContainer>
             <Table sx={{ minWidth: 750 }}>
-              <TableHead>
+              <TableHead sx={{ backgroundColor: "#F3F5F9" }}>
                 <TableRow>
                   <TableCell padding="checkbox">
                     <Checkbox
@@ -628,7 +630,7 @@ export default function SubscriberList() {
               setPage(0);
             }}
           />
-        </Paper>
+        </Box>
 
         {/* Action Menu */}
         <Menu

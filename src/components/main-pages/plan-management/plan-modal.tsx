@@ -132,6 +132,7 @@ export default function PlanModal({
 
   const handleSubmit = () => {
     if (validateForm()) {
+      console.log(formData);
       onClose();
     }
   };

@@ -127,7 +127,7 @@ export default function PlanCard({
             zIndex: 1,
             // borderColor: "#C8C1DC",
             border: "1px solid #C8C1DC",
-            borderRadius:"12px"    
+            borderRadius: "12px",
           }}
         >
           <Chip
@@ -330,8 +330,8 @@ export default function PlanCard({
             },
           }}
         >
-          {/* {plan.buttonText} */}
-          Choose Plan
+          {plan.buttonText}
+          {/* Choose Plan */}
         </Button>
       </CardActions>
     </Card>

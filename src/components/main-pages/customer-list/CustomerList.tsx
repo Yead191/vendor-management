@@ -387,19 +387,30 @@ export default function CustomerList() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Box sx={{ width: "100%" }}>
-        <Paper sx={{ width: "100%", mb: 2, p: "16px 24px" }}>
-          {/* Toolbar */}
-          <Toolbar sx={{ pl: { sm: 2 }, pr: { xs: 1, sm: 1 } }}>
+      <Box sx={{ p: "16px 24px", backgroundColor: "background.paper" }}>
+        <Box sx={{}}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 2,
+              mb: 3,
+              alignItems: "center",
+            }}
+          >
             <Box
-              sx={{ display: "flex", alignItems: "center", gap: 2, flex: 1 }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 2,
+              }}
             >
-              {/* Search */}
               <TextField
-                size="small"
-                placeholder="Search customers..."
+                placeholder="Search vendors..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
+                sx={{ minWidth: 300 }}
+                size="small"
                 InputProps={{
                   startAdornment: (
                     <SearchIcon
@@ -417,19 +428,13 @@ export default function CustomerList() {
                     // borderRadius: "15px",
                   },
                 }}
-                sx={{
-                  minWidth: 250,
-                  // borderRadius: "50px",
-                }}
               />
-
-              {/* Filters */}
-              <FormControl size="small" sx={{ minWidth: 120 }}>
-                <InputLabel>Plan</InputLabel>
+              <FormControl size="small" sx={{ minWidth: 150 }}>
+                <InputLabel>Filter by Status</InputLabel>
                 <Select
-                  value={planFilter}
-                  label="Plan"
+                  value={statusFilter}
                   onChange={(e) => setPlanFilter(e.target.value)}
+                  label="Filter by Status"
                 >
                   <MenuItem value="">All Plans</MenuItem>
                   <MenuItem value="Basic">Basic</MenuItem>
@@ -437,23 +442,8 @@ export default function CustomerList() {
                   <MenuItem value="Enterprise">Enterprise</MenuItem>
                 </Select>
               </FormControl>
-
-              <FormControl size="small" sx={{ minWidth: 120 }}>
-                <InputLabel>Status</InputLabel>
-                <Select
-                  value={statusFilter}
-                  label="Status"
-                  onChange={(e) => setStatusFilter(e.target.value)}
-                >
-                  <MenuItem value="">All Status</MenuItem>
-                  <MenuItem value="Active">Active</MenuItem>
-                  <MenuItem value="Inactive">Inactive</MenuItem>
-                </Select>
-              </FormControl>
             </Box>
-
-            {/* Actions */}
-            <Box sx={{ display: "flex", gap: 1 }}>
+            <Box sx={{ display: "flex", gap: 1, justifyContent: "flex-end" }}>
               {selected.length > 0 && (
                 <>
                   <Button
@@ -477,11 +467,12 @@ export default function CustomerList() {
               )}
               <Button
                 variant="contained"
-                size="small"
+                size="medium"
                 startIcon={<PersonAddIcon />}
                 onClick={handleAddCustomer}
                 sx={{
                   backgroundColor: "#6366f1",
+                 
                 }}
               >
                 Add Customer
@@ -494,12 +485,12 @@ export default function CustomerList() {
                 Export
               </Button> */}
             </Box>
-          </Toolbar>
+          </Box>
 
           {/* Table */}
           <TableContainer>
-            <Table sx={{ minWidth: 750 }}>
-              <TableHead>
+            <Table>
+              <TableHead sx={{ backgroundColor: "#F3F5F9" }}>
                 <TableRow>
                   <TableCell padding="checkbox">
                     <Checkbox
@@ -616,7 +607,7 @@ export default function CustomerList() {
               setPage(0);
             }}
           />
-        </Paper>
+        </Box>
 
         {/* Action Menu */}
         <Menu
@@ -718,7 +709,6 @@ export default function CustomerList() {
                           {detailCustomer?.joinDate}
                         </Typography>
                       </Box>
-                      
                     </Stack>
                   </CardContent>
                 </Card>

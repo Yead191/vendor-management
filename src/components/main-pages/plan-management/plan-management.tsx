@@ -48,7 +48,7 @@ const mockPlans: Plan[] = [
     monthlyPrice: 19,
     annualPrice: 190,
     isPopular: false,
-    buttonText: "Current Plan",
+    buttonText: "Choose Plan",
     buttonColor: "primary",
     category: "basic",
     features: [
@@ -72,7 +72,7 @@ const mockPlans: Plan[] = [
     buttonColor: "primary",
     category: "pro",
     features: [
-      { id: "7", name: "05 User Access" },
+      { id: "7", name: "05 User Access", description: "Unlimited Access" },
       { id: "8", name: "10 Knowledge Assets" },
       { id: "9", name: "Access to Pro SEO Mode" },
       { id: "10", name: "Collaboration with our Management" },
@@ -88,7 +88,7 @@ const mockPlans: Plan[] = [
     monthlyPrice: 199,
     annualPrice: 1990,
     isPopular: false,
-    buttonText: "Contact Sales",
+    buttonText: "Choose Plan",
     buttonColor: "success",
     category: "enterprise",
     features: [
