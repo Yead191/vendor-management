@@ -49,9 +49,9 @@ export default function Sidebar({ open = true }: SidebarProps) {
   ];
 
   const settingsItems = [
-    { name: "About us", icon: <Info />, path: "/about" },
-    { name: "Privacy Policy", icon: <Security />, path: "/privacy" },
-    { name: "Terms & Condition", icon: <Article />, path: "/terms" },
+    { name: "About us", icon: <Info />, path: "/about-us" },
+    { name: "Privacy Policy", icon: <Security />, path: "/privacy-policy" },
+    { name: "Terms & Condition", icon: <Article />, path: "/terms-condition" },
     { name: "FAQ", icon: <Help />, path: "/faq" },
   ];
 
@@ -146,9 +146,9 @@ export default function Sidebar({ open = true }: SidebarProps) {
                 py: 1.5,
                 px: 3,
                 backgroundColor: isSettingsActive ? "#f8fafc" : "transparent",
-                borderRight: isSettingsActive
-                  ? "3px solid #6366f1"
-                  : "3px solid transparent",
+                // borderRight: isSettingsActive
+                //   ? "3px solid #6366f1"
+                //   : "3px solid transparent",
                 "&:hover": { backgroundColor: "#f8fafc" },
                 "& .MuiListItemIcon-root": {
                   color: isSettingsActive ? "#6366f1" : "#6b7280",

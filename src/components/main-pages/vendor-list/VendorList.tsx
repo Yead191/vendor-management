@@ -26,6 +26,11 @@ import {
   Checkbox,
   TablePagination,
   InputAdornment,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
 } from "@mui/material";
 import {
   Search as SearchIcon,
@@ -37,147 +42,10 @@ import {
   Verified as VerifiedIcon,
 } from "@mui/icons-material";
 import VendorModal from "./vendorModal";
-import VendorDetails from "./VendorDetailsModal";
+import VendorDetails from "./VendorDetails";
 import { toast } from "sonner";
-
-interface VendorData {
-  id: number;
-  name: string;
-  category: string;
-  email: string;
-  phone: string;
-  rating: number;
-  status: string;
-  totalProducts: number;
-  joinedDate: string;
-  isVerified: boolean;
-  description: string;
-  avatar: string;
-  address: string;
-}
-
-const sampleVendors: VendorData[] = [
-  {
-    id: 1,
-    name: "GreenTech Supplies",
-    category: "Electronics",
-    email: "contact@greentech.com",
-    phone: "+1-234-567-890",
-    rating: 4.5,
-    status: "Active",
-    totalProducts: 120,
-    joinedDate: "2024-02-15",
-    isVerified: true,
-    description: "Leading supplier of eco-friendly electronics and components",
-    avatar: "/placeholder.svg?height=40&width=40",
-    address: "123 Green Street, San Francisco, CA, USA",
-  },
-  {
-    id: 2,
-    name: "FashionForward Ltd.",
-    category: "Apparel",
-    email: "support@fashionforward.com",
-    phone: "+1-321-654-098",
-    rating: 4.2,
-    status: "Active",
-    totalProducts: 85,
-    joinedDate: "2023-11-10",
-    isVerified: true,
-    description: "Trendy fashion and apparel supplier",
-    avatar: "/placeholder.svg?height=40&width=40",
-    address: "456 Fashion Ave, New York, NY, USA",
-  },
-  {
-    id: 3,
-    name: "EcoHome Essentials",
-    category: "Home & Living",
-    email: "info@ecohome.com",
-    phone: "+1-555-789-123",
-    rating: 4.7,
-    status: "Inactive",
-    totalProducts: 200,
-    joinedDate: "2024-01-05",
-    isVerified: false,
-    description: "Sustainable home and living products",
-    avatar: "/placeholder.svg?height=40&width=40",
-    address: "789 Eco Street, Portland, OR, USA",
-  },
-  {
-    id: 4,
-    name: "AutoGear Pro",
-    category: "Automotive",
-    email: "sales@autogearpro.com",
-    phone: "+1-777-123-456",
-    rating: 4.1,
-    status: "Pending",
-    totalProducts: 145,
-    joinedDate: "2023-09-21",
-    isVerified: false,
-    description: "Professional automotive parts and accessories",
-    avatar: "/placeholder.svg?height=40&width=40",
-    address: "321 Auto Lane, Detroit, MI, USA",
-  },
-  {
-    id: 5,
-    name: "Kitchen Kings",
-    category: "Kitchenware",
-    email: "hello@kitchenkings.com",
-    phone: "+1-999-222-333",
-    rating: 4.6,
-    status: "Active",
-    totalProducts: 75,
-    joinedDate: "2024-03-12",
-    isVerified: true,
-    description: "Premium kitchen appliances and tools",
-    avatar: "/placeholder.svg?height=40&width=40",
-    address: "654 Kitchen Blvd, Chicago, IL, USA",
-  },
-  {
-    id: 6,
-    name: "BookNest",
-    category: "Books",
-    email: "contact@booknest.com",
-    phone: "+1-888-123-789",
-    rating: 4.9,
-    status: "Active",
-    totalProducts: 340,
-    joinedDate: "2022-12-25",
-    isVerified: true,
-    description: "Comprehensive book and educational materials supplier",
-    avatar: "/placeholder.svg?height=40&width=40",
-    address: "987 Library St, Boston, MA, USA",
-  },
-  {
-    id: 7,
-    name: "HealthVibe",
-    category: "Health & Wellness",
-    email: "service@healthvibe.com",
-    phone: "+1-555-432-876",
-    rating: 3.9,
-    status: "Inactive",
-    totalProducts: 60,
-    joinedDate: "2023-07-18",
-    isVerified: false,
-    description: "Health and wellness products supplier",
-    avatar: "/placeholder.svg?height=40&width=40",
-    address: "147 Wellness Way, Los Angeles, CA, USA",
-  },
-  {
-    id: 8,
-    name: "HealthVibe",
-    category: "Health & Wellness",
-    email: "service@healthvibe.com",
-    phone: "+1-555-432-876",
-    rating: 3.9,
-    status: "Inactive",
-    totalProducts: 60,
-    joinedDate: "2023-07-18",
-    isVerified: false,
-    description: "Health and wellness products supplier",
-    avatar: "/placeholder.svg?height=40&width=40",
-    address: "147 Wellness Way, Los Angeles, CA, USA",
-  },
-];
+import { useRouter } from "next/navigation";
+import { sampleVendors, VendorData } from "@/data/sampleVendors";
 
 const categories = [
   "All Categories",
@@ -201,27 +69,11 @@ export default function VendorList() {
   const [categoryFilter, setCategoryFilter] = useState("All Categories");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingVendor, setEditingVendor] = useState<VendorData | undefined>();
-  const [viewingVendor, setViewingVendor] = useState<VendorData | false>();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(7);
-
-  // Filter vendors based on search and filters
-  const applyFilters = () => {
-    const filtered = vendors.filter((vendor) => {
-      const matchesSearch =
-        vendor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        vendor.email.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesStatus =
-        statusFilter === "All Status" || vendor.status === statusFilter;
-      const matchesCategory =
-        categoryFilter === "All Categories" ||
-        vendor.category === categoryFilter;
-
-      return matchesSearch && matchesStatus && matchesCategory;
-    });
-    setFilteredVendors(filtered);
-    setPage(0);
-  };
+  const [open, setOpen] = useState(false);
+  const [deleteVendor, setDeleteVendor] = useState<number | null>(null);
+  const router = useRouter();
 
   // Apply filters whenever search term or filters change
 
@@ -251,38 +103,42 @@ export default function VendorList() {
     setIsModalOpen(true);
   };
 
-  const handleViewVendor = (vendor: VendorData) => {
-    setViewingVendor(vendor);
-  };
-
   const handleDeleteVendor = (vendorId: number) => {
-    setVendors((prev) => prev.filter((vendor) => vendor.id !== vendorId));
-    setSelectedVendors((prev) => prev.filter((id) => id !== vendorId));
+    setDeleteVendor(vendorId);
+    setOpen(true);
+  };
+  const handleConfirmDelete = () => {
+    if (deleteVendor !== null) {
+      setVendors((prev) => prev.filter((vendor) => vendor.id !== deleteVendor));
+      setDeleteVendor(null);
+      setOpen(false);
+      toast.success("Vendor deleted successfully!");
+    }
   };
 
-  const handleSaveVendor = (vendorData: VendorData) => {
-    if (editingVendor) {
-      // Update existing vendor
-      setVendors((prev) =>
-        prev.map((vendor) =>
-          vendor.id === editingVendor.id
-            ? { ...vendorData, id: editingVendor.id }
-            : vendor
-        )
-      );
-      toast.success("Vendor updated successfully!");
-    } else {
-      // Add new vendor
-      const newVendor = {
-        ...vendorData,
-        id: Math.max(...vendors.map((v) => v.id)) + 1,
-      };
-      setVendors((prev) => [...prev, newVendor]);
-      console.log(newVendor);
-    }
-    setIsModalOpen(false);
-    setEditingVendor(undefined);
-  };
+  // const handleSaveVendor = (vendorData: VendorData) => {
+  //   if (editingVendor) {
+  //     // Update existing vendor
+  //     setVendors((prev) =>
+  //       prev.map((vendor) =>
+  //         vendor.id === editingVendor.id
+  //           ? { ...vendorData, id: editingVendor.id }
+  //           : vendor
+  //       )
+  //     );
+  //     toast.success("Vendor updated successfully!");
+  //   } else {
+  //     // Add new vendor
+  //     const newVendor = {
+  //       ...vendorData,
+  //       id: Math.max(...vendors.map((v) => v.id)) + 1,
+  //     };
+  //     setVendors((prev) => [...prev, newVendor]);
+  //     console.log(newVendor);
+  //   }
+  //   setIsModalOpen(false);
+  //   setEditingVendor(undefined);
+  // };
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -305,15 +161,6 @@ export default function VendorList() {
         return "default";
     }
   };
-
-  if (viewingVendor) {
-    return (
-      <VendorDetails
-        vendor={viewingVendor}
-        onBack={() => setViewingVendor(false)}
-      />
-    );
-  }
 
   return (
     <Box sx={{ p: "16px 24px", backgroundColor: "background.paper" }}>
@@ -525,7 +372,11 @@ export default function VendorList() {
                     <Box sx={{ display: "flex", gap: 0.5 }}>
                       <IconButton
                         size="small"
-                        onClick={() => handleViewVendor(vendor)}
+                        onClick={() =>
+                          router.push(
+                            `/vendor-list/vendor-details/${vendor.id}`
+                          )
+                        }
                       >
                         <ViewIcon fontSize="small" />
                       </IconButton>
@@ -575,8 +426,68 @@ export default function VendorList() {
           setEditingVendor(undefined);
         }}
         vendor={editingVendor}
-        onSave={handleSaveVendor}
       />
+      {/* delete modal */}
+      <Dialog
+        open={open}
+        maxWidth="xs"
+        fullWidth
+        onClose={() => setOpen(false)}
+        aria-labelledby="dialog-title"
+        slotProps={{
+          paper: {
+            sx: {
+              borderRadius: "15px",
+            },
+          },
+        }}
+      >
+        <DialogTitle
+          id="dialog-title"
+          sx={{ fontSize: "1.2rem", textAlign: "center" }}
+        >
+          Confirm Delete
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText sx={{ textAlign: "center" }}>
+            Are you sure{" "}
+            <Typography
+              component="span"
+              sx={{ fontWeight: "bold", color: "primary.main" }}
+            >
+              Vendor
+            </Typography>{" "}
+            will be removed?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions sx={{ p: 0, borderTop: "1px solid #ccc" }}>
+          <Box sx={{ flex: 1 }} display="flex" justifyContent="center">
+            <Button
+              fullWidth
+              variant="text"
+              sx={{ p: 1.5 }}
+              onClick={() => setOpen(false)}
+            >
+              Cancel
+            </Button>
+          </Box>
+          <Box
+            sx={{ flex: 1, borderLeft: "1px solid #ccc" }}
+            display="flex"
+            justifyContent="center"
+          >
+            <Button
+              fullWidth
+              variant="text"
+              color="error"
+              sx={{ p: 1.5 }}
+              onClick={handleConfirmDelete}
+            >
+              Yes
+            </Button>
+          </Box>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }

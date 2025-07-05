@@ -50,7 +50,7 @@ interface VendorModalProps {
   open: boolean;
   onClose: () => void;
   vendor?: VendorData;
-  onSave: (vendor: VendorData) => void;
+  //   onSave: (vendor: VendorData) => void;
 }
 
 const categories = [
@@ -69,7 +69,6 @@ export default function VendorModal({
   open,
   onClose,
   vendor,
-  onSave,
 }: VendorModalProps) {
   const [formData, setFormData] = useState<VendorData>({
     id: 0,

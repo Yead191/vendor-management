@@ -27,6 +27,7 @@ import {
 } from "@mui/icons-material";
 import VendorModal from "./vendorModal";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 interface VendorData {
   id: number;
@@ -61,7 +62,7 @@ const sampleVendor: VendorData = {
   joinedDate: "2024-02-15",
   isVerified: true,
   description: "Leading supplier of eco-friendly electronics and components",
-  avatar: "/placeholder.svg?height=40&width=40",
+  avatar: "/assets/oq.jpg?height=40&width=40",
   address: "123 Green Street, San Francisco, CA, USA",
 };
 
@@ -71,18 +72,14 @@ export default function VendorDetails({
 }: VendorDetailsProps) {
   const [vendor, setVendor] = useState<VendorData>(propVendor || sampleVendor);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isDetailsOpen, setIsDetailsOpen] = useState(true);
+  const router = useRouter();
 
   const handleEditClick = () => {
     setIsModalOpen(true);
   };
 
   const handleCloseDetails = () => {
-    if (onBack) {
-      onBack();
-    } else {
-      setIsDetailsOpen(false);
-    }
+    router.push("/vendor-list");
   };
 
   const handleSaveVendor = (updatedVendor: VendorData) => {
@@ -98,23 +95,6 @@ export default function VendorDetails({
       month: "short",
     });
   };
-
-  if (!isDetailsOpen) {
-    return (
-      <Box sx={{ p: 3, textAlign: "center" }}>
-        <Typography variant="h6" color="text.secondary">
-          Vendor details closed
-        </Typography>
-        <Button
-          variant="contained"
-          onClick={() => setIsDetailsOpen(true)}
-          sx={{ mt: 2 }}
-        >
-          Reopen Details
-        </Button>
-      </Box>
-    );
-  }
 
   return (
     <Box sx={{ maxWidth: 900, mx: "auto", p: 3 }}>

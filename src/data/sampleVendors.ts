@@ -1,0 +1,138 @@
+export interface VendorData {
+  id: number;
+  name: string;
+  category: string;
+  email: string;
+  phone: string;
+  rating: number;
+  status: string;
+  totalProducts: number;
+  joinedDate: string;
+  isVerified: boolean;
+  description: string;
+  avatar: string;
+  address: string;
+}
+
+export const sampleVendors: VendorData[] = [
+  {
+    id: 1,
+    name: "GreenTech Supplies",
+    category: "Electronics",
+    email: "contact@greentech.com",
+    phone: "+1-234-567-890",
+    rating: 4.5,
+    status: "Active",
+    totalProducts: 120,
+    joinedDate: "2024-02-15",
+    isVerified: true,
+    description: "Leading supplier of eco-friendly electronics and components",
+    avatar: "/assets/user1.jpg?height=40&width=40",
+    address: "123 Green Street, San Francisco, CA, USA",
+  },
+  {
+    id: 2,
+    name: "FashionForward Ltd.",
+    category: "Apparel",
+    email: "support@fashionforward.com",
+    phone: "+1-321-654-098",
+    rating: 4.2,
+    status: "Active",
+    totalProducts: 85,
+    joinedDate: "2023-11-10",
+    isVerified: true,
+    description: "Trendy fashion and apparel supplier",
+    avatar: "/assets/user1.jpg?height=40&width=40",
+    address: "456 Fashion Ave, New York, NY, USA",
+  },
+  {
+    id: 3,
+    name: "EcoHome Essentials",
+    category: "Home & Living",
+    email: "info@ecohome.com",
+    phone: "+1-555-789-123",
+    rating: 4.7,
+    status: "Inactive",
+    totalProducts: 200,
+    joinedDate: "2024-01-05",
+    isVerified: false,
+    description: "Sustainable home and living products",
+    avatar: "/assets/user1.jpg?height=40&width=40",
+    address: "789 Eco Street, Portland, OR, USA",
+  },
+  {
+    id: 4,
+    name: "AutoGear Pro",
+    category: "Automotive",
+    email: "sales@autogearpro.com",
+    phone: "+1-777-123-456",
+    rating: 4.1,
+    status: "Pending",
+    totalProducts: 145,
+    joinedDate: "2023-09-21",
+    isVerified: false,
+    description: "Professional automotive parts and accessories",
+    avatar: "/assets/user1.jpg?height=40&width=40",
+    address: "321 Auto Lane, Detroit, MI, USA",
+  },
+  {
+    id: 5,
+    name: "Kitchen Kings",
+    category: "Kitchenware",
+    email: "hello@kitchenkings.com",
+    phone: "+1-999-222-333",
+    rating: 4.6,
+    status: "Active",
+    totalProducts: 75,
+    joinedDate: "2024-03-12",
+    isVerified: true,
+    description: "Premium kitchen appliances and tools",
+    avatar: "/assets/user1.jpg?height=40&width=40",
+    address: "654 Kitchen Blvd, Chicago, IL, USA",
+  },
+  {
+    id: 6,
+    name: "BookNest",
+    category: "Books",
+    email: "contact@booknest.com",
+    phone: "+1-888-123-789",
+    rating: 4.9,
+    status: "Active",
+    totalProducts: 340,
+    joinedDate: "2022-12-25",
+    isVerified: true,
+    description: "Comprehensive book and educational materials supplier",
+    avatar: "/assets/user1.jpg?height=40&width=40",
+    address: "987 Library St, Boston, MA, USA",
+  },
+  {
+    id: 7,
+    name: "HealthVibe",
+    category: "Health & Wellness",
+    email: "service@healthvibe.com",
+    phone: "+1-555-432-876",
+    rating: 3.9,
+    status: "Inactive",
+    totalProducts: 60,
+    joinedDate: "2023-07-18",
+    isVerified: false,
+    description: "Health and wellness products supplier",
+    avatar: "/assets/user1.jpg?height=40&width=40",
+    address: "147 Wellness Way, Los Angeles, CA, USA",
+  },
+  {
+    id: 8,
+    name: "HealthVibe",
+    category: "Health & Wellness",
+    email: "service@healthvibe.com",
+    phone: "+1-555-432-876",
+    rating: 3.9,
+    status: "Inactive",
+    totalProducts: 60,
+    joinedDate: "2023-07-18",
+    isVerified: false,
+    description: "Health and wellness products supplier",
+    avatar: "/assets/user1.jpg?height=40&width=40",
+    address: "147 Wellness Way, Los Angeles, CA, USA",
+  },
+];

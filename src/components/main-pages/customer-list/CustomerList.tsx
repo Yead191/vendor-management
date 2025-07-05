@@ -59,150 +59,8 @@ import { de } from "date-fns/locale";
 import CustomerModal from "./customer-modal";
 import ConfirmationDialog from "./confirmation-dialog";
 import { CalendarIcon } from "@mui/x-date-pickers";
-
-// Mock data
-const mockCustomers = [
-  {
-    id: 1,
-    name: "John Smith",
-    email: "john.smith@email.com",
-    phone: "+1 (555) 123-4567",
-    plan: "Premium",
-    status: "Active",
-    joinDate: "2024-01-15",
-    avatar: "/assets/user1.jpg?height=40&width=40",
-    address: "123 Main St, New York, NY 10001",
-    totalOrders: 24,
-    totalSpent: 2450.0,
-    endDate: "2024-04-20",
-  },
-  {
-    id: 2,
-    name: "Sarah Johnson",
-    email: "sarah.j@email.com",
-    phone: "+1 (555) 987-6543",
-    plan: "Basic",
-    status: "Active",
-    joinDate: "2024-02-10",
-    avatar: "/assets/user1.jpg?height=40&width=40",
-    address: "456 Oak Ave, Los Angeles, CA 90210",
-    totalOrders: 12,
-    totalSpent: 890.5,
-    endDate: "2024-04-18",
-  },
-  {
-    id: 3,
-    name: "Michael Brown",
-    email: "mike.brown@email.com",
-    phone: "+1 (555) 456-7890",
-    plan: "Enterprise",
-    status: "Inactive",
-    joinDate: "2023-12-05",
-    avatar: "/assets/user1.jpg?height=40&width=40",
-    address: "789 Pine St, Chicago, IL 60604",
-    totalOrders: 45,
-    totalSpent: 5670.25,
-    endDate: "2024-04-10",
-  },
-  {
-    id: 4,
-    name: "Emily Davis",
-    email: "emily.davis@email.com",
-    phone: "+1 (555) 321-0987",
-    plan: "Premium",
-    status: "Active",
-    joinDate: "2024-04-08",
-    avatar: "/assets/user1.jpg?height=40&width=40",
-    address: "321 Elm St, Miami, FL 33104",
-    totalOrders: 18,
-    totalSpent: 1890.75,
-    endDate: "2024-04-19",
-  },
-  {
-    id: 5,
-    name: "David Wilson",
-    email: "david.wilson@email.com",
-    phone: "+1 (555) 654-3210",
-    plan: "Basic",
-    status: "Active",
-    joinDate: "2024-02-04",
-    avatar: "/assets/user1.jpg?height=40&width=40",
-    address: "654 Maple Dr, Seattle, WA 98104",
-    totalOrders: 8,
-    totalSpent: 445.3,
-    endDate: "2024-04-21",
-  },
-  {
-    id: 6,
-    name: "John Smith",
-    email: "john.smith@email.com",
-    phone: "+1 (555) 123-4567",
-    plan: "Premium",
-    status: "Active",
-    joinDate: "2024-04-15",
-    avatar: "/assets/user1.jpg?height=40&width=40",
-    address: "123 Main St, New York, NY 10004",
-    totalOrders: 24,
-    totalSpent: 2450.0,
-    endDate: "2024-04-20",
-  },
-  {
-    id: 7,
-    name: "Sarah Johnson",
-    email: "sarah.j@email.com",
-    phone: "+1 (555) 987-6543",
-    plan: "Basic",
-    status: "Active",
-    joinDate: "2024-02-10",
-    avatar: "/assets/user1.jpg?height=40&width=40",
-    address: "456 Oak Ave, Los Angeles, CA 90210",
-    totalOrders: 12,
-    totalSpent: 890.5,
-    endDate: "2024-04-18",
-  },
-  {
-    id: 8,
-    name: "Michael Brown",
-    email: "mike.brown@email.com",
-    phone: "+1 (555) 456-7890",
-    plan: "Enterprise",
-    status: "Inactive",
-    joinDate: "2023-12-05",
-    avatar: "/assets/user1.jpg?height=40&width=40",
-    address: "789 Pine St, Chicago, IL 60604",
-    totalOrders: 45,
-    totalSpent: 5670.25,
-    endDate: "2024-04-10",
-  },
-  {
-    id: 9,
-    name: "Emily Davis",
-    email: "emily.davis@email.com",
-    phone: "+1 (555) 321-0987",
-    plan: "Premium",
-    status: "Active",
-    joinDate: "2024-04-08",
-    avatar: "/assets/user1.jpg?height=40&width=40",
-    address: "321 Elm St, Miami, FL 33104",
-    totalOrders: 18,
-    totalSpent: 1890.75,
-    endDate: "2024-04-19",
-  },
-  {
-    id: 10,
-    name: "David Wilson",
-    email: "david.wilson@email.com",
-    phone: "+1 (555) 654-3210",
-    plan: "Basic",
-    status: "Active",
-    joinDate: "2024-02-04",
-    avatar: "/assets/user1.jpg?height=40&width=40",
-    address: "654 Maple Dr, Seattle, WA 98104",
-    totalOrders: 8,
-    totalSpent: 445.3,
-    endDate: "2024-04-21",
-  },
-];
+import { mockCustomers } from "@/data/mockCustomers";
+import { toast } from "sonner";
 
 const planColors = {
   Basic: "default",
@@ -339,23 +197,9 @@ export default function CustomerList() {
         totalSpent: 0,
         lastActivity: new Date().toISOString().split("T")[0],
       };
-      setCustomers([...customers, newCustomer]);
-      setSnackbar({
-        open: true,
-        message: "Customer added successfully",
-        severity: "success",
-      });
+      toast.info("Feature will be added in the future");
     } else {
-      setCustomers(
-        customers.map((c) =>
-          c.id === editingCustomer.id ? { ...c, ...customerData } : c
-        )
-      );
-      setSnackbar({
-        open: true,
-        message: "Customer updated successfully",
-        severity: "success",
-      });
+      toast.info("Feature will be added in the future");
     }
   };
 
@@ -472,18 +316,11 @@ export default function CustomerList() {
                 onClick={handleAddCustomer}
                 sx={{
                   backgroundColor: "#6366f1",
-                 
                 }}
               >
                 Add Customer
               </Button>
-              {/* <Button
-                variant="outlined"
-                size="small"
-                startIcon={<DownloadIcon />}
-              >
-                Export
-              </Button> */}
+           
             </Box>
           </Box>
 

@@ -58,6 +58,7 @@ interface PlanModalProps {
   onClose: () => void;
   plan?: Plan | null;
   mode: "add" | "edit";
+  onSave: (plan: Plan) => void;
 }
 
 export default function PlanModal({
@@ -65,6 +66,7 @@ export default function PlanModal({
   onClose,
   plan,
   mode,
+  onSave,
 }: PlanModalProps) {
   const [formData, setFormData] = useState<Plan>({
     name: "",
@@ -133,6 +135,7 @@ export default function PlanModal({
   const handleSubmit = () => {
     if (validateForm()) {
       console.log(formData);
+      onSave(formData);
       onClose();
     }
   };

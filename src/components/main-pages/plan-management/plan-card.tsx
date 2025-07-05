@@ -35,7 +35,7 @@ interface Feature {
 }
 
 interface Plan {
-  id: number;
+  id?: number;
   name: string;
   description: string;
   monthlyPrice: number;
