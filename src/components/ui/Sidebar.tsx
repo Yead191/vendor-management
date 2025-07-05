@@ -89,7 +89,7 @@ export default function Sidebar({ open = true }: SidebarProps) {
             fontVariant: "small-caps",
           }}
         >
-          GoVendor
+          Vendor Hub
         </Typography>
       </Box>
 
