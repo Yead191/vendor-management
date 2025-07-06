@@ -42,8 +42,8 @@ export default function HeaderDashboard() {
         alignItems: "center",
         zIndex: 10,
         borderBottom: "1px solid #f3f4f6",
-        mx: "24px",
-        borderRadius: "0 0px 16px 16px",
+        // mx: "24px",
+        // borderRadius: "0 0px 16px 16px",
       }}
     >
       {/* Page Title */}
