@@ -1,6 +1,7 @@
 "use client";
 import { Box, Typography, Button, useTheme } from "@mui/material";
 import { Business, TrendingUp } from "@mui/icons-material";
+import Image from "next/image";
 
 interface AuthPanelProps {
   title: string;
@@ -119,6 +120,9 @@ export function AuthPanel({
           </Button>
         )}
       </Box>
+      {/* <Box sx={{ zIndex: 2, textAlign: "start", maxWidth: 400 }}>
+        <Image width={400} height={400} src="/logo2.png" alt="Logo" />
+      </Box> */}
     </Box>
   );
 }

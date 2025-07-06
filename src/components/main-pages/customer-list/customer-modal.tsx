@@ -34,7 +34,7 @@ interface Customer {
 interface CustomerModalProps {
   open: boolean;
   onClose: () => void;
-  onSave: (customer: Customer) => void;
+
   customer?: Customer | null;
   mode: "add" | "edit";
 }
@@ -42,7 +42,7 @@ interface CustomerModalProps {
 export default function CustomerModal({
   open,
   onClose,
-  onSave,
+
   customer,
   mode,
 }: CustomerModalProps) {
@@ -101,10 +101,7 @@ export default function CustomerModal({
   };
 
   const handleSubmit = () => {
-    if (validateForm()) {
-      onSave(formData);
-      onClose();
-    }
+    console.log(formData);
   };
 
   const handleInputChange =

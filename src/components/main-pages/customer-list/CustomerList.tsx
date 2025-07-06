@@ -61,6 +61,7 @@ import ConfirmationDialog from "./confirmation-dialog";
 import { CalendarIcon } from "@mui/x-date-pickers";
 import { mockCustomers } from "@/data/mockCustomers";
 import { toast } from "sonner";
+import CustomerDetailsModal from "./CustomerDetailsModal";
 
 const planColors = {
   Basic: "default",
@@ -101,16 +102,17 @@ export default function CustomerList() {
   const [confirmationOpen, setConfirmationOpen] = useState(false);
   const [customerToDelete, setCustomerToDelete] = useState<any>(null);
 
+  // console.log(statusFilter);
   // Filter and search logic
   const filteredCustomers = useMemo(() => {
     return customers.filter((customer) => {
       const matchesSearch =
         customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         customer.email.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesPlan = !planFilter || customer.plan === planFilter;
+
       const matchesStatus = !statusFilter || customer.status === statusFilter;
 
-      return matchesSearch && matchesPlan && matchesStatus;
+      return matchesSearch && matchesStatus;
     });
   }, [customers, searchTerm, planFilter, statusFilter]);
 
@@ -187,30 +189,9 @@ export default function CustomerList() {
     handleMenuClose();
   };
 
-  const handleSaveCustomer = (customerData: any) => {
-    if (customerModalMode === "add") {
-      const newCustomer = {
-        ...customerData,
-        id: Math.max(...customers.map((c) => c.id)) + 1,
-        joinDate: new Date().toISOString().split("T")[0],
-        totalOrders: 0,
-        totalSpent: 0,
-        lastActivity: new Date().toISOString().split("T")[0],
-      };
-      toast.info("Feature will be added in the future");
-    } else {
-      toast.info("Feature will be added in the future");
-    }
-  };
-
   const handleConfirmDelete = () => {
     if (customerToDelete) {
-      setCustomers(customers.filter((c) => c.id !== customerToDelete.id));
-      setSnackbar({
-        open: true,
-        message: `Customer "${customerToDelete.name}" deleted successfully`,
-        severity: "success",
-      });
+      toast.info("Feature will be added in the future");
       setCustomerToDelete(null);
     }
   };
@@ -232,6 +213,7 @@ export default function CustomerList() {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Box sx={{ p: "16px 24px", backgroundColor: "background.paper" }}>
+        {/* header */}
         <Box sx={{}}>
           <Box
             sx={{
@@ -277,13 +259,12 @@ export default function CustomerList() {
                 <InputLabel>Filter by Status</InputLabel>
                 <Select
                   value={statusFilter}
-                  onChange={(e) => setPlanFilter(e.target.value)}
+                  onChange={(e) => setStatusFilter(e.target.value)}
                   label="Filter by Status"
                 >
-                  <MenuItem value="">All Plans</MenuItem>
-                  <MenuItem value="Basic">Basic</MenuItem>
-                  <MenuItem value="Premium">Premium</MenuItem>
-                  <MenuItem value="Enterprise">Enterprise</MenuItem>
+                  <MenuItem value="">All Status</MenuItem>
+                  <MenuItem value="Active">Active</MenuItem>
+                  <MenuItem value="Inactive">Inactive</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -320,7 +301,6 @@ export default function CustomerList() {
               >
                 Add Customer
               </Button>
-           
             </Box>
           </Box>
 
@@ -445,7 +425,6 @@ export default function CustomerList() {
             }}
           />
         </Box>
-
         {/* Action Menu */}
         <Menu
           anchorEl={anchorEl}
@@ -481,101 +460,20 @@ export default function CustomerList() {
             <ListItemText>Delete Customer</ListItemText>
           </MenuItem>
         </Menu>
-
-        {/* Customer Detail Dialog */}
-        <Dialog
+        {/* Customer Detail Dialog */}F
+        <CustomerDetailsModal
           open={detailOpen}
           onClose={() => setDetailOpen(false)}
-          maxWidth="sm"
-          fullWidth
-        >
-          <DialogTitle>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-              <Avatar
-                src={detailCustomer?.avatar}
-                sx={{ width: 48, height: 48 }}
-              >
-                {detailCustomer?.name?.charAt(0)}
-              </Avatar>
-              <Box>
-                <Typography variant="h6">{detailCustomer?.name}</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Customer ID: #{detailCustomer?.id}
-                </Typography>
-              </Box>
-            </Box>
-          </DialogTitle>
-          <DialogContent>
-            <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-              <Box sx={{ display: "flex", gap: 3 }}>
-                <Card sx={{ flex: 1 }}>
-                  <CardContent>
-                    <Typography variant="h6" gutterBottom>
-                      Contact Information
-                    </Typography>
-                    <Stack spacing={2}>
-                      <Box
-                        sx={{ display: "flex", alignItems: "center", gap: 1 }}
-                      >
-                        <EmailIcon color="action" />
-                        <Typography variant="body2">
-                          {detailCustomer?.email}
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{ display: "flex", alignItems: "center", gap: 1 }}
-                      >
-                        <PhoneIcon color="action" />
-                        <Typography variant="body2">
-                          {detailCustomer?.phone}
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{ display: "flex", alignItems: "center", gap: 1 }}
-                      >
-                        <LocationIcon color="action" />
-                        <Typography variant="body2">
-                          {detailCustomer?.address}
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{ display: "flex", alignItems: "center", gap: 1 }}
-                      >
-                        <CalendarIcon color="action" />
-                        <Typography variant="body2">
-                          {detailCustomer?.joinDate}
-                        </Typography>
-                      </Box>
-                    </Stack>
-                  </CardContent>
-                </Card>
-              </Box>
-            </Box>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={() => setDetailOpen(false)}>Close</Button>
-            <Button
-              onClick={() => handleEditCustomer(detailCustomer)}
-              variant="contained"
-              startIcon={<EditIcon />}
-              sx={{
-                backgroundColor: "#6366f1",
-              }}
-            >
-              Edit Customer
-            </Button>
-          </DialogActions>
-        </Dialog>
-
+          detailCustomer={detailCustomer}
+          handleMenuClose={handleMenuClose}
+        />
         {/* Customer Modal */}
         <CustomerModal
           open={customerModalOpen}
           onClose={() => setCustomerModalOpen(false)}
-          onSave={handleSaveCustomer}
           customer={editingCustomer}
           mode={customerModalMode}
         />
-
         {/* Confirmation Dialog */}
         <ConfirmationDialog
           open={confirmationOpen}
@@ -588,7 +486,6 @@ export default function CustomerList() {
           severity="error"
           customerName={customerToDelete?.name}
         />
-
         {/* Snackbar */}
         <Snackbar
           open={snackbar.open}
