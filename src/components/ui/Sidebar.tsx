@@ -28,6 +28,8 @@ import {
   Help,
   Logout as LogoutIcon,
 } from "@mui/icons-material";
+import { toast } from "sonner";
+import Image from "next/image";
 
 const drawerWidth = 280;
 
@@ -58,6 +60,20 @@ export default function Sidebar({ open = true }: SidebarProps) {
   const isActive = (path: string) => pathname === path;
   const isSettingsActive = settingsItems.some((item) => pathname === item.path);
 
+  const handleLogOut = () => {
+    toast.warning("Are you sure you want to log out?", {
+      duration: 5000,
+      description: "You will be logged out and redirected to the login page.",
+      action: {
+        label: "Logout",
+        onClick: async () => {
+          toast.success("Logged out successfully");
+          router.push("/auth/login");
+        },
+      },
+    });
+  };
+
   return (
     <Drawer
       variant="persistent"
@@ -78,7 +94,7 @@ export default function Sidebar({ open = true }: SidebarProps) {
     >
       {/* Header */}
       <Box sx={{ p: 1.5 }}>
-        <Typography
+        {/* <Typography
           variant="h6"
           sx={{
             fontWeight: 700,
@@ -90,7 +106,12 @@ export default function Sidebar({ open = true }: SidebarProps) {
           }}
         >
           Vendor Hub
-        </Typography>
+        </Typography> */}
+        <Image src="/assets/logo.png" style={{
+          height: "90px",
+          objectPosition: "center",
+          objectFit: "cover",
+        }} alt="Logo" width={260} height={50} />
       </Box>
 
       {/* Navigation */}
@@ -216,10 +237,7 @@ export default function Sidebar({ open = true }: SidebarProps) {
         {/* Logout Button at Bottom */}
         <ListItem disablePadding>
           <ListItemButton
-            onClick={() => {
-              console.log("Logging out...");
-              // You can replace this with actual logout logic
-            }}
+            onClick={handleLogOut}
             sx={{
               py: 1.25,
               px: 3,

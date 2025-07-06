@@ -16,8 +16,8 @@ import { Email, Lock, Visibility, VisibilityOff } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-export function LoginForm() {
-  const router = useRouter()
+export function ForgotPassword() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -38,10 +38,9 @@ export function LoginForm() {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("Login attempt:", formData);
-    router.push("/analytics");
-    toast.success("Login successful!");
-
+    console.log("Code sent to:", formData);
+    toast.success("Code sent to your email!");
+    router.push("/auth/verify-otp");
   };
 
   return (
@@ -53,7 +52,6 @@ export function LoginForm() {
         alignItems: "center",
         padding: 4,
         minHeight: "100vh",
-        // backgroundColor: "#fafafa",
       }}
     >
       <Paper
@@ -74,7 +72,7 @@ export function LoginForm() {
             mb: 1,
           }}
         >
-          Welcome Back!
+          Forgot your password?
         </Typography>
 
         <Typography
@@ -84,7 +82,7 @@ export function LoginForm() {
             mb: 4,
           }}
         >
-          Sign in to your vendor dashboard
+          Please enter your email for verification!
         </Typography>
 
         <Box component="form" onSubmit={handleSubmit} sx={{ width: "100%" }}>
@@ -100,46 +98,6 @@ export function LoginForm() {
               startAdornment: (
                 <InputAdornment position="start">
                   <Email sx={{ color: "#9D4EDD" }} />
-                </InputAdornment>
-              ),
-            }}
-            sx={{
-              mb: 3,
-              "& .MuiOutlinedInput-root": {
-                borderRadius: 2,
-                "&:hover fieldset": {
-                  borderColor: "#9D4EDD",
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "#7B2CBF",
-                },
-              },
-            }}
-          />
-
-          <TextField
-            required
-            fullWidth
-            variant="outlined"
-            placeholder="Password"
-            type={showPassword ? "text" : "password"}
-            value={formData.password}
-            onChange={handleInputChange("password")}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Lock sx={{ color: "#9D4EDD" }} />
-                </InputAdornment>
-              ),
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={handleTogglePassword}
-                    edge="end"
-                    sx={{ color: "#9D4EDD" }}
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
                 </InputAdornment>
               ),
             }}
@@ -175,42 +133,8 @@ export function LoginForm() {
               },
             }}
           >
-            Sign In
+            Send Code
           </Button>
-
-          <Link
-            href="/auth/forgot-password"
-            underline="hover"
-            sx={{
-              color: "#9D4EDD",
-              fontSize: "0.9rem",
-              fontWeight: 500,
-              "&:hover": {
-                color: "#7B2CBF",
-              },
-            }}
-          >
-            Forgot Password?
-          </Link>
-        </Box>
-
-        <Box sx={{ mt: 4, pt: 3, borderTop: "1px solid #eee" }}>
-          <Typography variant="body2" sx={{ color: "#666" }}>
-            Don't have an account?{" "}
-            <Link
-              href="#"
-              underline="hover"
-              sx={{
-                color: "#9D4EDD",
-                fontWeight: 600,
-                "&:hover": {
-                  color: "#7B2CBF",
-                },
-              }}
-            >
-              Contact Admin
-            </Link>
-          </Typography>
         </Box>
       </Paper>
     </Box>
