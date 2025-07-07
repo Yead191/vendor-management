@@ -50,9 +50,8 @@ interface Plan {
   features: Feature[];
   buttonText: string;
   buttonColor: "primary" | "secondary" | "success" | "warning";
-  category: "basic" | "pro" | "enterprise";
+  featureTitle: string;
 }
-
 interface PlanModalProps {
   open: boolean;
   onClose: () => void;
@@ -77,7 +76,7 @@ export default function PlanModal({
     features: [],
     buttonText: "Get Started",
     buttonColor: "primary",
-    category: "basic",
+    featureTitle: "",
   });
 
   const [newFeature, setNewFeature] = useState("");
@@ -97,7 +96,7 @@ export default function PlanModal({
         features: [],
         buttonText: "Get Started",
         buttonColor: "primary",
-        category: "basic",
+        featureTitle: "",
       });
     }
     setErrors({});
@@ -241,16 +240,17 @@ export default function PlanModal({
                 />
                 <Box sx={{ display: "flex", gap: 2 }}>
                   <FormControl fullWidth>
-                    <InputLabel>Category</InputLabel>
-                    <Select
-                      value={formData.category}
-                      label="Category"
-                      onChange={handleSelectChange("category")}
-                    >
-                      <MenuItem value="basic">Basic</MenuItem>
-                      <MenuItem value="pro">Pro</MenuItem>
-                      <MenuItem value="enterprise">Enterprise</MenuItem>
-                    </Select>
+                    {/* <InputLabel>Feature Title</InputLabel> */}
+                    <TextField
+                      fullWidth
+                      label="Feature Title"
+                      type="text"
+                      value={formData.featureTitle}
+                      onChange={handleInputChange("featureTitle")}
+                      error={!!errors.featureTitle}
+                      helperText={errors.featureTitle}
+                      required
+                    />
                   </FormControl>
                   <FormControl fullWidth>
                     <InputLabel>Button Color</InputLabel>

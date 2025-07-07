@@ -14,7 +14,7 @@ export interface Plan {
   features: Feature[];
   buttonText: string;
   buttonColor: "primary" | "secondary" | "success" | "warning";
-  category: "basic" | "pro" | "enterprise";
+  featureTitle: string
 }
 
 export const mockPlans: Plan[] = [
@@ -28,7 +28,7 @@ export const mockPlans: Plan[] = [
     isPopular: false,
     buttonText: "Choose Plan",
     buttonColor: "primary",
-    category: "basic",
+    featureTitle: "Everything in basic, Plus & Business",
     features: [
       { id: "1", name: "01 User Access" },
       { id: "2", name: "Access to Fiora AI Chatbot" },
@@ -48,7 +48,7 @@ export const mockPlans: Plan[] = [
     isPopular: true,
     buttonText: "Switch to this Plan",
     buttonColor: "primary",
-    category: "pro",
+    featureTitle: "Everything in pro, Plus & Business",
     features: [
       { id: "7", name: "05 User Access", description: "Unlimited Access" },
       { id: "8", name: "10 Knowledge Assets" },
@@ -68,7 +68,7 @@ export const mockPlans: Plan[] = [
     isPopular: false,
     buttonText: "Choose Plan",
     buttonColor: "success",
-    category: "enterprise",
+    featureTitle: "Everything in enterprise, Plus & Business",
     features: [
       { id: "13", name: "Unlimited Feature Usage" },
       { id: "14", name: "Performance Analytics & Insights" },

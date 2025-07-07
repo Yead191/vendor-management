@@ -44,7 +44,7 @@ interface Plan {
   features: Feature[];
   buttonText: string;
   buttonColor: "primary" | "secondary" | "success" | "warning";
-  category: "basic" | "pro" | "enterprise";
+  featureTitle: string;
 }
 
 interface PlanCardProps {
@@ -282,7 +282,7 @@ export default function PlanCard({
               color: "text.secondary",
             }}
           >
-            Everything in {plan.category}, Plus & Business
+            {plan.featureTitle}
           </Typography>
           <List dense sx={{ py: 0 }}>
             {plan.features.map((feature) => (
