@@ -159,7 +159,7 @@ export function ResetPassword() {
             variant="contained"
             size="large"
             sx={{
-              background: "linear-gradient(135deg, #7B2CBF 0%, #9D4EDD 100%)",
+              background: "linear-gradient(135deg, #7B2CBF 0%, #6366f1 100%)",
               borderRadius: 2,
               py: 1.5,
               fontSize: "1rem",
@@ -167,7 +167,7 @@ export function ResetPassword() {
               textTransform: "none",
               mb: 2,
               "&:hover": {
-                background: "linear-gradient(135deg, #6A1B9A 0%, #8E24AA 100%)",
+                background: "linear-gradient(135deg, #6A1B9A 0%, #6366f1 100%)",
               },
             }}
           >

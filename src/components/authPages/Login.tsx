@@ -17,7 +17,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 export function LoginForm() {
-  const router = useRouter()
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -41,7 +41,6 @@ export function LoginForm() {
     console.log("Login attempt:", formData);
     router.push("/analytics");
     toast.success("Login successful!");
-
   };
 
   return (
@@ -99,7 +98,7 @@ export function LoginForm() {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <Email sx={{ color: "#9D4EDD" }} />
+                  <Email sx={{ color: "#6366f1" }} />
                 </InputAdornment>
               ),
             }}
@@ -108,7 +107,7 @@ export function LoginForm() {
               "& .MuiOutlinedInput-root": {
                 borderRadius: 2,
                 "&:hover fieldset": {
-                  borderColor: "#9D4EDD",
+                  borderColor: "#6366f1",
                 },
                 "&.Mui-focused fieldset": {
                   borderColor: "#7B2CBF",
@@ -128,7 +127,7 @@ export function LoginForm() {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <Lock sx={{ color: "#9D4EDD" }} />
+                  <Lock sx={{ color: "#6366f1" }} />
                 </InputAdornment>
               ),
               endAdornment: (
@@ -136,7 +135,7 @@ export function LoginForm() {
                   <IconButton
                     onClick={handleTogglePassword}
                     edge="end"
-                    sx={{ color: "#9D4EDD" }}
+                    sx={{ color: "#6366f1" }}
                   >
                     {showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
@@ -148,7 +147,7 @@ export function LoginForm() {
               "& .MuiOutlinedInput-root": {
                 borderRadius: 2,
                 "&:hover fieldset": {
-                  borderColor: "#9D4EDD",
+                  borderColor: "#6366f1",
                 },
                 "&.Mui-focused fieldset": {
                   borderColor: "#7B2CBF",
@@ -163,7 +162,7 @@ export function LoginForm() {
             variant="contained"
             size="large"
             sx={{
-              background: "linear-gradient(135deg, #7B2CBF 0%, #9D4EDD 100%)",
+              background: "linear-gradient(135deg, #7B2CBF 0%, #6366f1 100%)",
               borderRadius: 2,
               py: 1.5,
               fontSize: "1rem",
@@ -171,7 +170,7 @@ export function LoginForm() {
               textTransform: "none",
               mb: 2,
               "&:hover": {
-                background: "linear-gradient(135deg, #6A1B9A 0%, #8E24AA 100%)",
+                background: "linear-gradient(135deg, #6A1B9A 0%, #6366f1 100%)",
               },
             }}
           >
@@ -182,7 +181,7 @@ export function LoginForm() {
             href="/auth/forgot-password"
             underline="hover"
             sx={{
-              color: "#9D4EDD",
+              color: "#6366f1",
               fontSize: "0.9rem",
               fontWeight: 500,
               "&:hover": {
@@ -201,7 +200,7 @@ export function LoginForm() {
               href="#"
               underline="hover"
               sx={{
-                color: "#9D4EDD",
+                color: "#6366f1",
                 fontWeight: 600,
                 "&:hover": {
                   color: "#7B2CBF",

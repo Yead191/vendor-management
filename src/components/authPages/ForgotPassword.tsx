@@ -97,7 +97,7 @@ export function ForgotPassword() {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <Email sx={{ color: "#9D4EDD" }} />
+                  <Email sx={{ color: "#6366f1" }} />
                 </InputAdornment>
               ),
             }}
@@ -106,7 +106,7 @@ export function ForgotPassword() {
               "& .MuiOutlinedInput-root": {
                 borderRadius: 2,
                 "&:hover fieldset": {
-                  borderColor: "#9D4EDD",
+                  borderColor: "#6366f1",
                 },
                 "&.Mui-focused fieldset": {
                   borderColor: "#7B2CBF",
@@ -121,7 +121,7 @@ export function ForgotPassword() {
             variant="contained"
             size="large"
             sx={{
-              background: "linear-gradient(135deg, #7B2CBF 0%, #9D4EDD 100%)",
+              background: "linear-gradient(135deg, #7B2CBF 0%, #6366f1 100%)",
               borderRadius: 2,
               py: 1.5,
               fontSize: "1rem",
@@ -129,7 +129,7 @@ export function ForgotPassword() {
               textTransform: "none",
               mb: 2,
               "&:hover": {
-                background: "linear-gradient(135deg, #6A1B9A 0%, #8E24AA 100%)",
+                background: "linear-gradient(135deg, #6A1B9A 0%, #6366f1 100%)",
               },
             }}
           >

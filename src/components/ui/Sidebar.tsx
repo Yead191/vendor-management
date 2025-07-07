@@ -30,6 +30,7 @@ import {
 } from "@mui/icons-material";
 import { toast } from "sonner";
 import Image from "next/image";
+import Link from "next/link";
 
 const drawerWidth = 280;
 
@@ -93,8 +94,9 @@ export default function Sidebar({ open = true }: SidebarProps) {
       }}
     >
       {/* Header */}
-      <Box sx={{ p: 1.5 }}>
-        {/* <Typography
+      <Link href="/analytics">
+        <Box sx={{ p: 1.5 }}>
+          {/* <Typography
           variant="h6"
           sx={{
             fontWeight: 700,
@@ -107,12 +109,19 @@ export default function Sidebar({ open = true }: SidebarProps) {
         >
           Vendor Hub
         </Typography> */}
-        <Image src="/assets/logo.png" style={{
-          height: "90px",
-          objectPosition: "center",
-          objectFit: "cover",
-        }} alt="Logo" width={260} height={50} />
-      </Box>
+          <Image
+            src="/assets/logo.png"
+            style={{
+              height: "90px",
+              objectPosition: "center",
+              objectFit: "cover",
+            }}
+            alt="Logo"
+            width={260}
+            height={50}
+          />
+        </Box>
+      </Link>
 
       {/* Navigation */}
       <List

@@ -21,8 +21,7 @@ export function AuthPanel({
   return (
     <Box
       sx={{
-        background:
-          "linear-gradient(135deg, #7B2CBF 0%, #9D4EDD 50%, #C77DFF 100%)",
+        background: "#6366f1",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -36,8 +35,8 @@ export function AuthPanel({
           position: "absolute",
           top: -50,
           right: -50,
-          width: "100%",
-          height: "100vh",
+          width: "40%",
+          height: "40vh",
           borderRadius: "50%",
           background: "rgba(255, 255, 255, 0.1)",
           zIndex: 1,
@@ -48,7 +47,7 @@ export function AuthPanel({
           bottom: -100,
           left: -100,
           width: 300,
-          height: "100vh",
+          height: "40vh",
           borderRadius: "50%",
           background: "rgba(255, 255, 255, 0.05)",
           zIndex: 1,
