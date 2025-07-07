@@ -131,14 +131,6 @@ export default function PlanModal({
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = () => {
-    if (validateForm()) {
-      console.log(formData);
-      onSave(formData);
-      onClose();
-    }
-  };
-
   const handleInputChange =
     (field: keyof Plan) => (event: React.ChangeEvent<HTMLInputElement>) => {
       const value = field.includes("Price")
@@ -195,6 +187,14 @@ export default function PlanModal({
     return 0;
   };
 
+  // submit form
+  const handleSubmit = () => {
+    if (validateForm()) {
+      console.log(formData);
+      onSave(formData);
+      onClose();
+    }
+  };
   return (
     <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
       <DialogTitle>

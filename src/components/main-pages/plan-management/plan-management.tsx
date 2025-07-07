@@ -30,11 +30,6 @@ export default function PlanManagement() {
   const [editingPlan, setEditingPlan] = useState<Plan | null>(null);
   const [confirmationOpen, setConfirmationOpen] = useState(false);
   const [planToDelete, setPlanToDelete] = useState<Plan | null>(null);
-  const [snackbar, setSnackbar] = useState({
-    open: false,
-    message: "",
-    severity: "success" as "success" | "error",
-  });
 
   const handleTabChange = (
     _: React.SyntheticEvent,
@@ -84,11 +79,7 @@ export default function PlanManagement() {
   const handleConfirmDelete = () => {
     if (planToDelete) {
       setPlans(plans.filter((p) => p.id !== planToDelete.id));
-      setSnackbar({
-        open: true,
-        message: `Plan "${planToDelete.name}" deleted successfully`,
-        severity: "success",
-      });
+
       setPlanToDelete(null);
     }
   };
@@ -255,21 +246,6 @@ export default function PlanManagement() {
         severity="error"
         customerName={planToDelete?.name}
       />
-
-      {/* Snackbar */}
-      <Snackbar
-        open={snackbar.open}
-        autoHideDuration={6000}
-        onClose={() => setSnackbar({ ...snackbar, open: false })}
-      >
-        <Alert
-          onClose={() => setSnackbar({ ...snackbar, open: false })}
-          severity={snackbar.severity}
-          sx={{ width: "100%" }}
-        >
-          {snackbar.message}
-        </Alert>
-      </Snackbar>
     </Box>
   );
 }
