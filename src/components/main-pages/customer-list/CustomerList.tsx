@@ -460,7 +460,7 @@ export default function CustomerList() {
             <ListItemText>Delete Customer</ListItemText>
           </MenuItem>
         </Menu>
-        {/* Customer Detail Dialog */}F
+        {/* Customer Detail Dialog */}
         <CustomerDetailsModal
           open={detailOpen}
           onClose={() => setDetailOpen(false)}

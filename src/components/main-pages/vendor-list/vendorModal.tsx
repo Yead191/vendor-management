@@ -134,6 +134,7 @@ export default function VendorModal({
 
   const handleSubmit = () => {
     // onSave(formData);
+    console.log(formData);
     toast.success("Vendor saved successfully!");
   };
 

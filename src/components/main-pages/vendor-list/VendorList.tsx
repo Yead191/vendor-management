@@ -450,14 +450,13 @@ export default function VendorList() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText sx={{ textAlign: "center" }}>
-            Are you sure{" "}
+            Are you sure you want to delete this{" "}
             <Typography
               component="span"
               sx={{ fontWeight: "bold", color: "primary.main" }}
             >
               Vendor
             </Typography>{" "}
-            will be removed?
           </DialogContentText>
         </DialogContent>
         <DialogActions sx={{ p: 0, borderTop: "1px solid #ccc" }}>
