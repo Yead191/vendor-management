@@ -38,23 +38,23 @@ const Faq: React.FC = () => {
   const [faqItems, setFaqItems] = useState<FAQItem[]>([
     {
       id: "1",
-      title: "Our Story",
+      title: "How do I add a new vendor to the system?",
       content:
-        "convallis. Praesent felis, placerat Ut ac quis dui volutpat vitae elementum quis adipiscing malesuada tempor non ipsum non, nec vitae amet, Donec tincidunt efficitur. In In ipsum Cras turpis viverra laoreet ullamcorper placerat diam sed leo. faucibus vitae eget vitae vehicula, luctus id Lorem fringilla tempor faucibus ipsum Vestibulum tincidunt ullamcorper elit diam turpis placerat vitae Nunc vehicula, ex faucibus venenatis at, maximus commodo urna. Nam ex quis sit non vehicula, massa urna at",
+        "To add a new vendor, navigate to the 'Vendors' section and click the 'Add Vendor' button. Fill in the required fields such as vendor name, category, and address in the modal form. You can also upload an optional avatar image. Once completed, click 'Save' to add the vendor to the system. A confirmation toast will appear upon successful addition.",
       selected: false,
     },
     {
       id: "2",
-      title: "When to use Doctor For You",
+      title: "How can I filter vendors by category?",
       content:
-        "convallis. Praesent felis, placerat Ut ac quis dui volutpat vitae elementum quis adipiscing malesuada tempor non ipsum non, nec vitae amet, Donec tincidunt efficitur. In In ipsum Cras turpis viverra laoreet ullamcorper placerat diam sed leo. faucibus vitae eget vitae vehicula, luctus id Lorem fringilla tempor faucibus ipsum Vestibulum tincidunt ullamcorper elit diam turpis placerat vitae Nunc vehicula, ex faucibus venenatis at, maximus commodo urna. Nam ex quis sit non vehicula, massa urna at",
+        "Use the filter options in the 'Vendors' section to sort vendors by category. Select a category from the dropdown menu, and the list will update to display only vendors matching the selected category. You can combine this with the search bar to further refine results by vendor name or address.",
       selected: false,
     },
     {
       id: "3",
-      title: "Our Mission",
+      title: "What happens when I edit a vendor's details?",
       content:
-        "convallis. Praesent felis, placerat Ut ac quis dui volutpat vitae elementum quis adipiscing malesuada tempor non ipsum non, nec vitae amet, Donec tincidunt efficitur. In In ipsum Cras turpis viverra laoreet ullamcorper placerat diam sed leo. faucibus vitae eget vitae vehicula, luctus id Lorem fringilla tempor faucibus ipsum Vestibulum tincidunt ullamcorper elit diam turpis placerat vitae Nunc vehicula, ex faucibus venenatis at, maximus commodo urna. Nam ex quis sit non vehicula, massa urna at",
+        "To edit a vendor, click the 'Edit' button next to the vendor in the list. A modal will open with the vendor’s current details pre-populated, including name, category, and address. Update the desired fields and click 'Save Changes.' The system will update the vendor’s information and display a success toast. All changes are reflected immediately in the vendor list.",
       selected: false,
     },
   ]);
@@ -267,7 +267,7 @@ const Faq: React.FC = () => {
             Add FAQ
           </Button>
         </Box>
-        <Box sx={{ height: "70vh", overflowY: "auto", pb: 3, mt: 1.5 }}>
+        <Box sx={{ height: "70vh", overflowY: "auto", pb: 3, mt: 3 }}>
           {faqItems.map(renderFAQItem)}
         </Box>
 
