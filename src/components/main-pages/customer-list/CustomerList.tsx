@@ -467,7 +467,7 @@ export default function CustomerList() {
           detailCustomer={detailCustomer}
           handleMenuClose={handleMenuClose}
         />
-        {/* Customer Modal */}
+        {/* Add/Edit Modal */}
         <CustomerModal
           open={customerModalOpen}
           onClose={() => setCustomerModalOpen(false)}

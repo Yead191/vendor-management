@@ -46,6 +46,7 @@ import VendorDetails from "./VendorDetails";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { sampleVendors, VendorData } from "@/data/sampleVendors";
+import VendorDelete from "./VendorDelete";
 
 const categories = [
   "All Categories",
@@ -116,29 +117,6 @@ export default function VendorList() {
     }
   };
 
-  // const handleSaveVendor = (vendorData: VendorData) => {
-  //   if (editingVendor) {
-  //     // Update existing vendor
-  //     setVendors((prev) =>
-  //       prev.map((vendor) =>
-  //         vendor.id === editingVendor.id
-  //           ? { ...vendorData, id: editingVendor.id }
-  //           : vendor
-  //       )
-  //     );
-  //     toast.success("Vendor updated successfully!");
-  //   } else {
-  //     // Add new vendor
-  //     const newVendor = {
-  //       ...vendorData,
-  //       id: Math.max(...vendors.map((v) => v.id)) + 1,
-  //     };
-  //     setVendors((prev) => [...prev, newVendor]);
-  //     console.log(newVendor);
-  //   }
-  //   setIsModalOpen(false);
-  //   setEditingVendor(undefined);
-  // };
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -242,7 +220,7 @@ export default function VendorList() {
       </Box>
 
       {/* Table */}
-      <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
+      <TableContainer>
         <Table>
           <TableHead>
             <TableRow sx={{ bgcolor: "#F3F5F9" }}>
@@ -428,65 +406,11 @@ export default function VendorList() {
         vendor={editingVendor}
       />
       {/* delete modal */}
-      <Dialog
+      <VendorDelete
         open={open}
-        maxWidth="xs"
-        fullWidth
-        onClose={() => setOpen(false)}
-        aria-labelledby="dialog-title"
-        slotProps={{
-          paper: {
-            sx: {
-              borderRadius: "15px",
-            },
-          },
-        }}
-      >
-        <DialogTitle
-          id="dialog-title"
-          sx={{ fontSize: "1.2rem", textAlign: "center" }}
-        >
-          Confirm Delete
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText sx={{ textAlign: "center" }}>
-            Are you sure you want to delete this{" "}
-            <Typography
-              component="span"
-              sx={{ fontWeight: "bold", color: "primary.main" }}
-            >
-              Vendor
-            </Typography>{" "}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions sx={{ p: 0, borderTop: "1px solid #ccc" }}>
-          <Box sx={{ flex: 1 }} display="flex" justifyContent="center">
-            <Button
-              fullWidth
-              variant="text"
-              sx={{ p: 1.5 }}
-              onClick={() => setOpen(false)}
-            >
-              Cancel
-            </Button>
-          </Box>
-          <Box
-            sx={{ flex: 1, borderLeft: "1px solid #ccc" }}
-            display="flex"
-            justifyContent="center"
-          >
-            <Button
-              fullWidth
-              variant="text"
-              color="error"
-              sx={{ p: 1.5 }}
-              onClick={handleConfirmDelete}
-            >
-              Yes
-            </Button>
-          </Box>
-        </DialogActions>
-      </Dialog>
+        setOpen={setOpen}
+        handleConfirmDelete={handleConfirmDelete}
+      />
     </Box>
   );
 }
