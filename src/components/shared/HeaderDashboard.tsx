@@ -53,7 +53,9 @@ export default function HeaderDashboard() {
           m: 0,
         }}
       >
-        {formatPathName(targetSlug)}
+        {pathname === "/terms-condition"
+          ? "Terms & Condition"
+          : formatPathName(targetSlug)}
       </Typography>
 
       {/* Right Actions */}
