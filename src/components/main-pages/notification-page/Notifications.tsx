@@ -39,7 +39,7 @@ import {
 import {
   initialNotifications,
   Notification,
-} from "@/data/initalNortifications";
+} from "@/data/initialNotifications";
 
 const getNotificationIcon = (type: string) => {
   switch (type) {

@@ -17,7 +17,7 @@ import { Notifications, MarkEmailRead } from "@mui/icons-material";
 import {
   initialNotifications,
   Notification,
-} from "@/data/initalNortifications";
+} from "@/data/initialNotifications";
 import Link from "next/link";
 
 export default function NotificationDropdown() {
