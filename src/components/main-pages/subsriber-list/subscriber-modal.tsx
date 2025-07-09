@@ -123,7 +123,7 @@ export default function SubscriberModal({
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
       <DialogTitle>
         <Typography variant="h6">
-          {mode === "add" ? "Add New Customer" : "Edit Customer"}
+          {mode === "add" ? "Add New Subscriber" : "Edit Subscriber"}
         </Typography>
       </DialogTitle>
       <DialogContent>
