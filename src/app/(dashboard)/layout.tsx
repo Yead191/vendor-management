@@ -1,6 +1,6 @@
 "use client";
-import HeaderDashboard from "@/components/ui/HeaderDashboard";
-import AppSidebar from "@/components/ui/Sidebar";
+import HeaderDashboard from "@/components/shared/HeaderDashboard";
+import AppSidebar from "@/components/shared/Sidebar";
 import Head from "next/head";
 
 import React from "react";
